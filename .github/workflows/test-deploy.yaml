@@ -20,4 +20,4 @@ jobs:
     - name: Deploy Core
       run: |
         cd deployment/core
-        bash ../deploy-core.sh ${{ secrets.test_rg }} core.bicep
+        bash ../deploy.sh ${{ secrets.test_rg }} core.bicep
