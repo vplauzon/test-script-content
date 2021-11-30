@@ -1,0 +1,23 @@
+name:  Test Infra
+
+on:
+  workflow_dispatch
+
+env:
+  rg:  ---
+
+jobs:
+  core:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    # Login
+    - name: Azure Login
+      run: az login --service-principal -u ${{ secrets.test_sp_id }} -p ${{ secrets.test_sp_secret }} --tenant ${{ secrets.test_tenant_id }}
+    # Deploy the core (ADX + Logic App)
+    - name: Deploy Core
+      run: |
+        cd deployment/core/integration-test
+        bash ../deploy-core.sh ${{ secrets.test_rg }} core.bicep
