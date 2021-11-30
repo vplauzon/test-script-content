@@ -19,5 +19,5 @@ jobs:
     # Deploy the core (ADX + Logic App)
     - name: Deploy Core
       run: |
-        cd deployment/core/integration-test
+        cd deployment/core
         bash ../deploy-core.sh ${{ secrets.test_rg }} core.bicep
