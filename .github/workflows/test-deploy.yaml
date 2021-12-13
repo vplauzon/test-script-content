@@ -25,6 +25,7 @@ jobs:
     - name: Find cluster name
       run: |
         clusterName=$(az kusto cluster list -g ${{ secrets.test_rg }} --query [0].name -o tsv)
+        echo "Cluster Name:  $clusterName"
         echo "clusterName=$clusterName" >> $GITHUB_ENV
     # Start tests
     - name: Deploy One-Table
