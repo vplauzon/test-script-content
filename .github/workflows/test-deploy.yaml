@@ -21,3 +21,13 @@ jobs:
       run: |
         cd deployment/core
         bash ../deploy.sh ${{ secrets.test_rg }} core.bicep
+    # Find cluster name & put it in environment variable
+    - name: Find cluster name
+      run: |
+        clusterName=$(az kusto cluster list -g ${{ secrets.test_rg }} --query [0].name -o tsv)
+        echo "clusterName=$clusterName" >> $GITHUB_ENV
+    # Start tests
+    - name: Deploy One-Table
+      run: |
+        cd deployment/one-table
+        bash ../deploy.sh ${{ secrets.test_rg }} one-table.bicep $clusterName
