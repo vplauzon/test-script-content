@@ -30,5 +30,6 @@ jobs:
     # Start tests
     - name: Deploy One-Table
       run: |
+        echo "Cluster Name:  $clusterName"
         cd deployment/one-table
         bash ../deploy.sh ${{ secrets.test_rg }} one-table.bicep $clusterName
