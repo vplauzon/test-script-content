@@ -23,4 +23,4 @@ echo "Deploying ARM template"
 
 az deployment group create -n "deploy-$(uuidgen)" -g $rg \
     --template-file $templatePath \
-    --parameters region=$region
+    --parameters region='$region'
