@@ -20,7 +20,7 @@ jobs:
     - name: Deploy Core
       run: |
         cd deployment/core
-        bash ../deploy.sh ${{ secrets.test_rg }} core.bicep
+        bash ../deploy.sh ${{ secrets.test_rg }} core.bicep "East US 2"
     # Find cluster name & put it in environment variable
     - name: Find cluster name
       run: |
@@ -32,4 +32,4 @@ jobs:
       run: |
         echo "Cluster Name:  $clusterName"
         cd deployment/one-table
-        bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} one-table.bicep $clusterName
+        bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} one-table.bicep $clusterName "East US 2"

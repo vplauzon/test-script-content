@@ -4,11 +4,15 @@
 //  A Logic App is deployed to shutdown the clusters
 //  within 2-5 hours
 
+@description('Region override')
+param region string
+
+var actualRegion = length(region)==0 ? resourceGroup().location : region
 var uniqueId = uniqueString(resourceGroup().id, 'delta-kusto')
 
 resource intTestCluster 'Microsoft.Kusto/clusters@2021-01-01' = {
   name: 'intTests${uniqueId}'
-  location: resourceGroup().location
+  location: actualRegion
   tags: {
     'autoShutdown': 'true'
     'testLevel': 'integration'
@@ -22,7 +26,7 @@ resource intTestCluster 'Microsoft.Kusto/clusters@2021-01-01' = {
 
 resource autoShutdown 'Microsoft.Logic/workflows@2019-05-01' = {
   name: 'shutdownWorkflow${uniqueId}'
-  location: resourceGroup().location
+  location: actualRegion
   identity: {
     type: 'SystemAssigned'
   }
