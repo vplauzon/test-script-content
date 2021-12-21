@@ -13,7 +13,7 @@ resource cluster 'Microsoft.Kusto/clusters@2021-01-01' existing = {
 }
 
 resource perfTestDbs 'Microsoft.Kusto/clusters/databases@2021-01-01' = {
-  name: 'one-table'
+  name: 'two-tables'
   location: actualRegion
   parent: cluster
   kind: 'ReadWrite'
