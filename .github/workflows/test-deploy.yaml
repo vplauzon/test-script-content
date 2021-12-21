@@ -33,6 +33,11 @@ jobs:
         echo "Cluster Name:  $clusterName"
         cd deployment/one-table
         bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} one-table.bicep $clusterName 'East US 2'
+    - name: Deploy One-Table-2
+      run: |
+        echo "Cluster Name:  $clusterName"
+        cd deployment/one-table
+        bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} one-table-2.bicep $clusterName 'East US 2'
     - name: Deploy Two-Tables
       run: |
         echo "Cluster Name:  $clusterName"
