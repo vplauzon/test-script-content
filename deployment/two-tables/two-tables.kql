@@ -1,0 +1,3 @@
+.create table SimpleTable1(Id:int, Name:string)
+
+.create table SimpleTable2(thing:dynamic)
