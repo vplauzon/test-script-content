@@ -43,3 +43,8 @@ jobs:
         echo "Cluster Name:  $clusterName"
         cd deployment/two-tables
         bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} two-tables.bicep $clusterName 'East US 2'
+    - name: Deploy Too-many-Tables
+      run: |
+        echo "Cluster Name:  $clusterName"
+        cd deployment/too-many-tables
+        bash ../deploy-in-cluster.sh ${{ secrets.test_rg }} too-many-tables.bicep $clusterName 'East US 2'
