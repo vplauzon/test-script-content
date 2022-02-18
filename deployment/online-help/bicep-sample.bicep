@@ -16,6 +16,7 @@ resource db 'Microsoft.Kusto/clusters/databases@2022-02-01' existing = {
 
 resource perfTestDbs 'Microsoft.Kusto/clusters/databases/scripts@2022-02-01' = {
     name: scriptName
+    parent: db
     properties: {
         scriptContent: kqlScript
         continueOnErrors: continueOnErrors
