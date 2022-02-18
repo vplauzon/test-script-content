@@ -7,8 +7,12 @@
 @description('Region override')
 param region string
 
-var actualRegion = length(region)==0 ? resourceGroup().location : region
+var actualRegion = length(region) == 0 ? resourceGroup().location : region
 var uniqueId = uniqueString(resourceGroup().id, 'delta-kusto')
+var databaseNames = [
+  'onlineHelpJson'
+  'onlineHelpBicep'
+]
 
 resource intTestCluster 'Microsoft.Kusto/clusters@2021-01-01' = {
   name: 'intTests${uniqueId}'
@@ -23,6 +27,13 @@ resource intTestCluster 'Microsoft.Kusto/clusters@2021-01-01' = {
     'capacity': 1
   }
 }
+
+resource perfTestDbs 'Microsoft.Kusto/clusters/databases@2021-01-01' = [for dbName in databaseNames: {
+  name: dbName
+  location: actualRegion
+  parent: intTestCluster
+  kind: 'ReadWrite'
+}]
 
 resource autoShutdown 'Microsoft.Logic/workflows@2019-05-01' = {
   name: 'shutdownWorkflow${uniqueId}'
