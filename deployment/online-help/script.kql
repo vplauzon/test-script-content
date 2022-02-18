@@ -1,0 +1,5 @@
+.create table BicepTable(Id:int, Name:string)
+
+.create table BicepTable2(Id:int, Name:string)
+
+.create table BicepTable3(Id:int, Name:string)

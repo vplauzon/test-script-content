@@ -1,4 +1,3 @@
-param kqlScript string = ''
 param forceUpdateTag string = utcNow()
 param continueOnErrors bool = false
 param clusterName string
@@ -18,7 +17,7 @@ resource perfTestDbs 'Microsoft.Kusto/clusters/databases/scripts@2022-02-01' = {
     name: scriptName
     parent: db
     properties: {
-        scriptContent: kqlScript
+        scriptContent: loadTextContent(script.kql)
         continueOnErrors: continueOnErrors
         forceUpdateTag: forceUpdateTag
     }
