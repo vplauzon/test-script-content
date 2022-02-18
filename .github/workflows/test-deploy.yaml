@@ -45,7 +45,6 @@ jobs:
         bash az deployment group create -n "deploy-$(uuidgen)" -g ${{ secrets.test_rg }} \
           --template-file "bicep-sample.bicep" \
           --parameters \
-          "kqlScript=.create table SimpleTable(Id:int, Name:string)" \
           clusterName=$clusterName \
           databaseName=onlineHelpJson \
           scriptName=myScript
