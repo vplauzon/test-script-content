@@ -16,7 +16,7 @@ jobs:
     - name: Azure Login
       run: az login --service-principal -u ${{ secrets.test_sp_id }} -p ${{ secrets.test_sp_secret }} --tenant ${{ secrets.test_tenant_id }}
     - name: Change subscription
-      run: az account set -n test_subscription_id
+      run: az account set -n ${{ secrets.test_subscription_id }}
     # Deploy the core (ADX + Logic App)
     - name: Deploy Core
       run: |
