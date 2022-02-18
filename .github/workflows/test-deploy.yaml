@@ -46,7 +46,7 @@ jobs:
           --template-file "bicep-sample.bicep" \
           --parameters \
           clusterName=$clusterName \
-          databaseName=onlineHelpJson \
+          databaseName=onlineHelpBicep \
           scriptName=myScript
     - name: Deploy One-Table
       run: |
