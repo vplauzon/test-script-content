@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "kqlScript": {
-            "defaultValue": "",
+            "defaultValue": ".create-merge table MyTable (Level:string, Timestamp:datetime, UserId:string, TraceId:string, Message:string, ProcessId:int32)\n\n.create-merge table MyTable2 (Level:string, Timestamp:datetime, UserId:string, TraceId:string, Message:string, ProcessId:int32)",
             "type": "String"
         },
         "forceUpdateTag": {
